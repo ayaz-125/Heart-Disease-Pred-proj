@@ -104,8 +104,7 @@ def predict():
         input_df[columns_to_scale] = scaler.transform(input_df[columns_to_scale])
 
         prediction = model.predict(input_df)[0]
-        print(prediction)
-
+        
         return render_template("index.html", result=int(prediction))
 
     except Exception as e:

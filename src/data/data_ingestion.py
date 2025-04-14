@@ -88,12 +88,12 @@ def main():
         test_size = params['data_ingestion']['test_size']
         # test_size = 0.2    #This is the hardcoded method.
 
-        # df = load_data(data_url=r'D:\VIKAS\Heart-Disease-Predection\notebooks\Heart_Disease_Prediction.csv')  # This is the alternate method to load the data from the notebook/Heart_Disease_Prediction.csv
-        aws_access_key = os.getenv("AWS Access Key ID")
-        aws_secret_key = os.getenv("AWS Secret Access Key")
-        bucket_name = os.getenv("BUCKET_NAME")
-        s3 = s3_connection.s3_operations(bucket_name,aws_access_key,aws_secret_key)
-        df = s3.fetch_file_from_s3("Heart_Disease_Prediction.csv")
+        df = load_data(data_url=r'D:\VIKAS\Heart-Disease-Predection\notebooks\Heart_Disease_Prediction.csv')  # This is the alternate method to load the data from the notebook/Heart_Disease_Prediction.csv
+        # aws_access_key = os.getenv("AWS Access Key ID")
+        # aws_secret_key = os.getenv("AWS Secret Access Key")
+        # bucket_name = os.getenv("BUCKET_NAME")
+        # s3 = s3_connection.s3_operations(bucket_name,aws_access_key,aws_secret_key)
+        # df = s3.fetch_file_from_s3("Heart_Disease_Prediction.csv")
 
 
         final_df = preprocess_data(df)

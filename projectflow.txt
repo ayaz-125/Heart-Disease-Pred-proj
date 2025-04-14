@@ -51,7 +51,7 @@
     >> Please make sure to save token.
     >> Run this in your terminal --> $env:CAPSTONE_TEST="your_token_here"
 
-31 37. Setup aws services for below secrets and variables:
+31 37. Setup aws services for below secrets and variables: (This is used when ingesting data from S3 and when pushing the .md file to S3.)
 	-Run this following command in your terminal
          - $env:AWS_ACCESS_KEY_ID="your_access_key_id"
          - $env:AWS_SECRET_ACCESS_KEY="your_secret_access_key"
