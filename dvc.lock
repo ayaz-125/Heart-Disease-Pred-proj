@@ -1,0 +1,102 @@
+schema: '2.0'
+stages:
+  data_ingestion:
+    cmd: python src/data/data_ingestion.py
+    deps:
+    - path: src/data/data_ingestion.py
+      hash: md5
+      md5: 0789646fe6f1d32bd18c362bbf7f45cd
+      size: 4721
+    params:
+      params.yaml:
+        data_ingestion.test_size: 0.1
+    outs:
+    - path: data_fol/raw
+      hash: md5
+      md5: ed6815911bb7d6ac08087a11ad04408e.dir
+      size: 10573
+      nfiles: 2
+  data_preprocessing:
+    cmd: python src/data/data_preprocessing.py
+    deps:
+    - path: data_fol/raw
+      hash: md5
+      md5: ed6815911bb7d6ac08087a11ad04408e.dir
+      size: 10573
+      nfiles: 2
+    - path: src/data/data_preprocessing.py
+      hash: md5
+      md5: 5b3b15b0ff5846c079a915461d1c81d8
+      size: 1648
+    outs:
+    - path: data_fol/interim
+      hash: md5
+      md5: cb79c473090a79ae6b469a188dd45b3d.dir
+      size: 10633
+      nfiles: 2
+  feature_engineering:
+    cmd: python src/features/feature_engineering.py
+    deps:
+    - path: data_fol/interim
+      hash: md5
+      md5: cb79c473090a79ae6b469a188dd45b3d.dir
+      size: 10633
+      nfiles: 2
+    - path: src/features/feature_engineering.py
+      hash: md5
+      md5: 9353ed9f1785363e772542203bc2757b
+      size: 3093
+    outs:
+    - path: data_fol/processed
+      hash: md5
+      md5: 77a3f5ba129c1264c78bc4231faf6211.dir
+      size: 69329
+      nfiles: 2
+  model_building:
+    cmd: python src/model/model_building.py
+    deps:
+    - path: data_fol/processed
+      hash: md5
+      md5: 77a3f5ba129c1264c78bc4231faf6211.dir
+      size: 69329
+      nfiles: 2
+    - path: src/model/model_building.py
+      hash: md5
+      md5: 1d3a16f703edbbe989ecc728aa02fbc2
+      size: 2602
+    outs:
+    - path: models/model.pkl
+      hash: md5
+      md5: 31f430670c5e8285741a2bb7099b0c73
+      size: 6148
+  model_evaluation:
+    cmd: python src/model/model_evaluation.py
+    deps:
+    - path: models/model.pkl
+      hash: md5
+      md5: 31f430670c5e8285741a2bb7099b0c73
+      size: 6148
+    - path: src/model/model_evaluation.py
+      hash: md5
+      md5: a046aad320cae8bdd07a970b994a7d69
+      size: 5589
+    outs:
+    - path: reports/experiment_info.json
+      hash: md5
+      md5: 925ddc8002685042b03dcc4cdfba3078
+      size: 82
+    - path: reports/metrics.json
+      hash: md5
+      md5: ee0cba5dee441a771904890b2b6a1439
+      size: 145
+  model_registration:
+    cmd: python src/model/register_model.py
+    deps:
+    - path: reports/experiment_info.json
+      hash: md5
+      md5: 925ddc8002685042b03dcc4cdfba3078
+      size: 82
+    - path: src/model/register_model.py
+      hash: md5
+      md5: d08eb75a8162ca08f7139ce82dea1c36
+      size: 3166
