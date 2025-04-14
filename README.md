@@ -1,6 +1,6 @@
 # 🫀 Heart Disease Prediction - End-to-End MLOps Project
 
-This is a complete end-to-end MLOps project for heart disease prediction using tools like DVC, MLflow, DagsHub, Flask, and AWS S3. It demonstrates a production-ready ML pipeline with experiment tracking, model versioning, and cloud integration.
+This is a complete end-to-end MLOps project for heart disease prediction using tools like DVC, MLflow, DagsHub, Flask, and AWS S3,AWS CodePipeline. It demonstrates a production-ready ML pipeline with experiment tracking, model versioning, and cloud integration.
 
 ---
 
