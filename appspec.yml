@@ -5,6 +5,9 @@ files:
   - source: /flaskapp
     destination: /home/ubuntu/flaskapp
 
+  - source: params.yaml
+    destination: /home/ec2-user/
+
 hooks:
   BeforeInstall:
     - location: scripts/stop.sh
