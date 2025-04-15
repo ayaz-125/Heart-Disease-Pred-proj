@@ -2,8 +2,8 @@ version: 0.0
 os: linux
 
 files:
-  - source: /flask_app
-    destination: /home/ubuntu/flask_app
+  - source: /flaskapp
+    destination: /home/ubuntu/flaskapp
 
 hooks:
   BeforeInstall:
