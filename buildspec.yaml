@@ -5,16 +5,24 @@ phases:
     runtime-versions:
       python: 3.11
     commands:
-      - echo Installing dependencies...
+      - echo installing dependencies...
       - pip install --upgrade pip
-      - pip install -r flask_app/requirements.txt
+      - pip install -r flaskapp/prod_requirements.txt
 
   build:
     commands:
-      - echo Build phase started...
-      - zip -r artifact.zip appspec.yml flask_app/** scripts/**
-      - aws s3 cp artifact.zip s3://heartbucket24/artifact.zip
+      - echo build phase started...
+      - echo nothing to zip or upload, just preparing files
 
 artifacts:
   files:
-    - artifact.zip
+    - flaskapp/**
+    - flaskapp/templates/**
+    - flaskapp/static/**
+    # - src/logger/__init__.py
+    - scripts/**
+    - params.yaml
+    - appspec.yml
+
+    
+   
