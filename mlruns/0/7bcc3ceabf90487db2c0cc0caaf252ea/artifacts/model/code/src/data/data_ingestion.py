@@ -84,9 +84,9 @@ def save_data(train_data:pd.DataFrame , test_data:pd.DataFrame , data_path:str) 
 
 def main():
     try:
-        params = load_params(params_path='params.yaml')  # this params store the yaml file into the python dictionary format and then we can easily access the variable by using it
-        test_size = params['data_ingestion']['test_size']
-        # test_size = 0.20   #This is the hardcoded method.
+    #     params = load_params(params_path='params.yaml')  # this params store the yaml file into the python dictionary format and then we can easily access the variable by using it
+    #     test_size = params['data_ingestion']['test_size']
+        test_size = 0.20   #This is the hardcoded method.
 
         df = load_data(data_url=r'D:\VIKAS\Heart-Disease-Predection\notebooks\Heart_Disease_Prediction.csv')  # This is the alternate method to load the data from the notebook/Heart_Disease_Prediction.csv
         # aws_access_key = os.getenv("AWS Access Key ID")

@@ -20,7 +20,7 @@ artifacts:
     - flaskapp/templates/**
     - flaskapp/static/**
     - scripts/**
-    - params.yaml
+    - flaskapp/params.yaml
     - appspec.yml
 
     

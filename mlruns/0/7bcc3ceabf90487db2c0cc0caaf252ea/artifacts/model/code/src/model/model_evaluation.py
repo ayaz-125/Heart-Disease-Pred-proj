@@ -10,9 +10,31 @@ import dagshub
 import os
 from src.logger import logging
 
-# Set MLflow tracking URI and initialize DagsHub
+
+# Below code block is for production use
+# -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+# dagshub_token = os.getenv("CAPSTONE_TEST")
+# if not dagshub_token:
+#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+# dagshub_url = "https://dagshub.com"
+# repo_owner = "ayazr425"
+# repo_name = "Heart-Disease-Pred-proj"
+
+# Set up MLflow tracking URI
+# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# -------------------------------------------------------------------------------------
+
+# Below code block is for local use
+# -------------------------------------------------------------------------------------
 mlflow.set_tracking_uri('https://dagshub.com/ayazr425/Heart-Disease-Pred-proj.mlflow')
-dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True, host="https://dagshub.com")
+dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True,host="https://dagshub.com")
+# -------------------------------------------------------------------------------------
+
 
 def load_model(file_path: str):
     """Load the trained model from a file."""
@@ -87,7 +109,7 @@ def save_model_info(run_id: str, model_path: str, file_path: str) -> None:
 
 def main():
     mlflow.set_experiment("My-dvc-pipeline")
-    with mlflow.start_run() as run:
+    with mlflow.start_run() as run:  # Start an MLflow run
         try:
             clf = load_model('./models/model.pkl')
             test_data = load_data('./data_fol/processed/test_scaled.csv')
@@ -96,34 +118,27 @@ def main():
             y_test = test_data.iloc[:, -1].values
 
             metrics = evaluate_model(clf, X_test, y_test)
+            
             save_metrics(metrics, 'reports/metrics.json')
-
+            
             # Log metrics to MLflow
             for metric_name, metric_value in metrics.items():
                 mlflow.log_metric(metric_name, metric_value)
-
-            # Log model parameters
+            
+            # Log model parameters to MLflow
             if hasattr(clf, 'get_params'):
                 params = clf.get_params()
                 for param_name, param_value in params.items():
                     mlflow.log_param(param_name, param_value)
-
+            
             # Log model to MLflow
             mlflow.sklearn.log_model(clf, "model")
-
-            # Save and log model info
+            
+            # Save model info
             save_model_info(run.info.run_id, "model", 'reports/experiment_info.json')
-
+            
             # Log the metrics file to MLflow
             mlflow.log_artifact('reports/metrics.json')
-
-            # ✅ Log scaler.pkl to MLflow artifacts
-            scaler_path = 'models/scaler.pkl'
-            if os.path.exists(scaler_path):
-                mlflow.log_artifact(scaler_path)
-                logging.info("Scaler.pkl successfully logged to MLflow.")
-            else:
-                logging.warning("Scaler.pkl not found. Skipping logging.")
 
         except Exception as e:
             logging.error('Failed to complete the model evaluation process: %s', e)

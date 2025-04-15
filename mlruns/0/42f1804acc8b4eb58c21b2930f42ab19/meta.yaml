@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/VIKAS/Heart-Disease-Pred-proj/mlruns/0/42f1804acc8b4eb58c21b2930f42ab19/artifacts
+end_time: 1744707796476
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 42f1804acc8b4eb58c21b2930f42ab19
+run_name: delicate-cub-127
+run_uuid: 42f1804acc8b4eb58c21b2930f42ab19
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744707782598
+status: 3
+tags: []
+user_id: HP

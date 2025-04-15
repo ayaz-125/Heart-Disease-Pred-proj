@@ -1,0 +1,15 @@
+artifact_uri: file:///D:/VIKAS/Heart-Disease-Pred-proj/mlruns/0/7bcc3ceabf90487db2c0cc0caaf252ea/artifacts
+end_time: 1744708259069
+entry_point_name: ''
+experiment_id: '0'
+lifecycle_stage: active
+run_id: 7bcc3ceabf90487db2c0cc0caaf252ea
+run_name: silent-ape-354
+run_uuid: 7bcc3ceabf90487db2c0cc0caaf252ea
+source_name: ''
+source_type: 4
+source_version: ''
+start_time: 1744708241474
+status: 3
+tags: []
+user_id: HP
