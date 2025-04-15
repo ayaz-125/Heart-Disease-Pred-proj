@@ -12,36 +12,14 @@ import os
 # Suppress warnings
 warnings.filterwarnings("ignore")
 
-
-# Below code block is for production use
-# -------------------------------------------------------------------------------------
-# Set up DagsHub credentials for MLflow tracking
-# dagshub_token = os.getenv("CAPSTONE_TEST")
-# if not dagshub_token:
-#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
-
-# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
-# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
-
-# dagshub_url = "https://dagshub.com"
-# repo_owner = "ayazr425"
-# repo_name = "Heart-Disease-Pred-proj"
-# Set up MLflow tracking URI
-# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
-
-
-# Below code block is for local use
-# -------------------------------------------------------------------------------------
-
+# ------------------------- DAGSHUB SETUP ----------------------------------
 mlflow.set_tracking_uri('https://dagshub.com/ayazr425/Heart-Disease-Pred-proj.mlflow')
 dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True)
 
-
-
-# Initialize Flask app
+# -------------------------- FLASK APP -------------------------------------
 app = Flask(__name__)
 
-# Load latest model from MLflow
+# ----------------------- GET MODEL FROM MLFLOW ----------------------------
 model_name = "my_model"
 
 def get_latest_model_version(model_name):
@@ -56,7 +34,16 @@ model_uri = f"models:/{model_name}/{model_version}"
 print(f"Fetching model from: {model_uri}")
 model = mlflow.pyfunc.load_model(model_uri)
 
-# Load scaling column list from params.yaml
+# -------------------- DOWNLOAD SCALER FROM MLFLOW ARTIFACTS ---------------
+def download_scaler_from_mlflow(model_name, model_version, artifact_name="scaler.pkl"):
+    client = mlflow.MlflowClient()
+    run_id = client.get_model_version(name=model_name, version=model_version).run_id
+    scaler_local_path = mlflow.artifacts.download_artifacts(run_id=run_id, artifact_path=artifact_name)
+    return joblib.load(scaler_local_path)
+
+scaler = download_scaler_from_mlflow(model_name, model_version)
+
+# ------------------- LOAD COLUMNS TO SCALE FROM PARAMS.YAML --------------
 def load_params(path="params.yaml"):
     with open(path, 'r') as f:
         return yaml.safe_load(f)
@@ -64,10 +51,7 @@ def load_params(path="params.yaml"):
 params = load_params()
 columns_to_scale = params['feature_engineering']['columns_to_scale']
 
-# Load the pre-trained scaler
-scaler = joblib.load('./models/scaler.pkl')  # Adjust path as needed
-
-# Routes
+# --------------------------- ROUTES ---------------------------------------
 @app.route("/", methods=["GET"])
 def home():
     return render_template("index.html", result=None)
@@ -100,16 +84,17 @@ def predict():
 
         input_df = pd.DataFrame([input_data], columns=columns)
 
-        # ✅ Use pre-trained scaler to scale input
+        # ✅ Use downloaded scaler from MLflow
         input_df[columns_to_scale] = scaler.transform(input_df[columns_to_scale])
 
         prediction = model.predict(input_df)[0]
-        
+
         return render_template("index.html", result=int(prediction))
 
     except Exception as e:
         print(f"Prediction Error: {e}")
         return render_template("index.html", result="Error: Invalid input")
 
+# --------------------------- START APP ------------------------------------
 if __name__ == "__main__":
     app.run(debug=True, host="0.0.0.0", port=5000)
