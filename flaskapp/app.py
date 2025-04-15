@@ -34,7 +34,7 @@ warnings.filterwarnings("ignore")
 # -------------------------------------------------------------------------------------
 
 mlflow.set_tracking_uri('https://dagshub.com/ayazr425/Heart-Disease-Pred-proj.mlflow')
-dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True,token=os.getenv("CAPSTONE_TEST"))
+dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True)
 
 
 
