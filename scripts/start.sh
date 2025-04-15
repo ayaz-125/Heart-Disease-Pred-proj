@@ -2,8 +2,8 @@
 
 echo "Running start.sh..." >> /home/ubuntu/start.log
 
-cd /home/ubuntu/flask_app || {
-  echo "Failed to cd into /home/ubuntu/flask_app" >> /home/ubuntu/start.log
+cd /home/ubuntu/flaskapp || {
+  echo "Failed to cd into /home/ubuntu/flaskapp" >> /home/ubuntu/start.log
   exit 1
 }
 
