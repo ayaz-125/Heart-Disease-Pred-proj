@@ -3,6 +3,19 @@
 This is a complete end-to-end MLOps project for heart disease prediction using tools like DVC, MLflow, DagsHub, Flask, and AWS S3,AWS CodePipeline. It demonstrates a production-ready ML pipeline with experiment tracking, model versioning, and cloud integration.
 
 ---
+## 🆕 A Simplified MLOps Approach: CodePipeline Over Docker.
+
+### ❌ Why Not Use Docker?
+While Docker is a powerful tool for containerizing applications, it can sometimes introduce unnecessary complexity—especially for straightforward deployment pipelines or for beginners just getting into MLOps. Writing Dockerfiles, building images, and managing containers can slow down development and add infrastructure overhead that isn't always needed for smaller or more focused projects.
+
+### ✅ Why CodePipeline?
+Instead of Docker, this project uses AWS CodePipeline in combination with CodeBuild, CodeDeploy, S3, and EC2 to achieve a fully automated CI/CD setup. CodePipeline offers a visual, intuitive, and tightly integrated workflow that simplifies the deployment process. It requires no containerization and yet ensures robust automation, reproducibility, and scalability. For this project, it was a faster and more accessible way to implement production-ready ML deployment.
+
+### 🔑 Key Takeaway
+This approach shows that you don’t need Docker to build effective, real-world MLOps pipelines. Cloud-native tools like CodePipeline can handle the job efficiently while remaining user-friendly and maintainable. It lowers the barrier to entry for those new to MLOps and encourages quicker iterations and deployments without diving deep into infrastructure management.
+
+### 🧠 Conclusion
+By choosing CodePipeline over Docker, this project introduces a fresh, simplified approach to MLOps deployment. It's ideal for solo developers, students, or teams looking for a scalable yet accessible solution. This project is a clear example of how modern cloud-native workflows can replace traditional container-based methods without compromising functionality or reliability.
 
 ## 📁 Project Setup
 
@@ -137,14 +150,15 @@ dvc push
 ```Terminal
 mkdir flaskapp
 cd flaskapp
-# Add Flask app files like app.py, templates/,pro_requirements.txt,params.yaml, etc.
+# Add Flask app files like app.py, templates/, etc.
 ```
 
-### Step 13: Run Flask App
+### Step 13: Run Flask App in your local system.
 
 ```Terminal
 pip install flask
 python app.py
+
 ```
 
 ---
@@ -230,7 +244,7 @@ mlruns/
 
 #### Before AWS Console Work
 
-- Copy logger.py and params.yaml into flaskapp/
+- Copy requirements.txt and params.yaml into flaskapp/
 
 - Git add, commit, and push
 
