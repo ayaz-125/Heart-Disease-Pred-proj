@@ -31,7 +31,7 @@ from src.logger import logging
 # Below code block is for local use
 # ----------------------------------------------------------------------------------------------------
 mlflow.set_tracking_uri('https://dagshub.com/ayazr425/Heart-Disease-Pred-proj.mlflow')
-dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True)
+dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Pred-proj', mlflow=True)
 # ----------------------------------------------------------------------------------------------------
 
 
