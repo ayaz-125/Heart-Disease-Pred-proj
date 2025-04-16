@@ -76,7 +76,7 @@ def main():
         save_data(train_df, os.path.join("./data_fol", "processed", "train_scaled.csv"))
         save_data(test_df, os.path.join("./data_fol", "processed", "test_scaled.csv"))
 
-        # ✅ Save the fitted scaler
+        
         scaler_path = os.path.join("./models", "scaler.pkl")
         os.makedirs(os.path.dirname(scaler_path), exist_ok=True)
         joblib.dump(scaler, scaler_path)

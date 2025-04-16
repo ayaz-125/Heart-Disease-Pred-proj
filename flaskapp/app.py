@@ -8,13 +8,31 @@ import yaml
 import joblib
 from sklearn.preprocessing import StandardScaler
 import os
-
-# Suppress warnings
 warnings.filterwarnings("ignore")
 
-# ------------------------- DAGSHUB SETUP ----------------------------------
+# Below code block is for production use
+# -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+# dagshub_token = os.getenv("CAPSTONE_TEST")
+# if not dagshub_token:
+#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+# dagshub_url = "https://dagshub.com"
+# repo_owner = "ayazr425"
+# repo_name = "Heart-Disease-Pred-proj"
+# # Set up MLflow tracking URI
+# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# -------------------------------------------------------------------------------------
+
+
+# Below code block is for local use
+# -------------------------------------------------------------------------------------
 mlflow.set_tracking_uri('https://dagshub.com/ayazr425/Heart-Disease-Pred-proj.mlflow')
-dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True)
+dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True,host="https://dagshub.com")
+# -------------------------------------------------------------------------------------
 
 # -------------------------- FLASK APP -------------------------------------
 app = Flask(__name__)
@@ -84,7 +102,7 @@ def predict():
 
         input_df = pd.DataFrame([input_data], columns=columns)
 
-        # ✅ Use downloaded scaler from MLflow
+        # Use downloaded scaler from MLflow
         input_df[columns_to_scale] = scaler.transform(input_df[columns_to_scale])
 
         prediction = model.predict(input_df)[0]

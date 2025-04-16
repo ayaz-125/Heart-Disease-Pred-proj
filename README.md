@@ -3,7 +3,7 @@
 This is a complete end-to-end MLOps project for heart disease prediction using tools like DVC, MLflow, DagsHub, Flask, and AWS S3,AWS CodePipeline. It demonstrates a production-ready ML pipeline with experiment tracking, model versioning, and cloud integration.
 
 ---
-## 🆕 A Simplified MLOps Approach: CodePipeline Over Docker.
+## 🆕 What's New ?: CodePipeline Over Docker.
 
 ### ❌ Why Not Use Docker?
 While Docker is a powerful tool for containerizing applications, it can sometimes introduce unnecessary complexity—especially for straightforward deployment pipelines or for beginners just getting into MLOps. Writing Dockerfiles, building images, and managing containers can slow down development and add infrastructure overhead that isn't always needed for smaller or more focused projects.
@@ -14,10 +14,17 @@ Instead of Docker, this project uses AWS CodePipeline in combination with CodeBu
 ### 🔑 Key Takeaway
 This approach shows that you don’t need Docker to build effective, real-world MLOps pipelines. Cloud-native tools like CodePipeline can handle the job efficiently while remaining user-friendly and maintainable. It lowers the barrier to entry for those new to MLOps and encourages quicker iterations and deployments without diving deep into infrastructure management.
 
-### 🧠 Conclusion
+### 🧠 Conclusion : A Simplified MLOps Approach
 By choosing CodePipeline over Docker, this project introduces a fresh, simplified approach to MLOps deployment. It's ideal for solo developers, students, or teams looking for a scalable yet accessible solution. This project is a clear example of how modern cloud-native workflows can replace traditional container-based methods without compromising functionality or reliability.
 
-## 📁 Project Setup
+## 🛠️ Project Setup & Execution
+To **imitate or run this project end-to-end**, please refer to [`projectflow.txt`](./projectflow.txt)  
+It contains **clear and precise, step-by-step directions** for setup, configuration, and running the application
+using a modular approach and implementing an eased up CI-CD workflow.
+
+This ensures consistency and helps you follow the same structure and flow used in this project.
+
+## 📁 Project Setup Overview
 
 ### Step 1: Initialize Project
 
@@ -180,13 +187,6 @@ $env:CAPSTONE_TEST="your_token_here"
 
 ---
 
-<!-- ## ✅ Environment Variable Setup
-
-```powershell
-$env:AWS_ACCESS_KEY_ID="your_access_key_id"
-$env:AWS_SECRET_ACCESS_KEY="your_secret_access_key"
-$env:BUCKET_NAME="your_bucket_name" -->
-
 
 ---
 
@@ -218,6 +218,20 @@ mlruns/
 
 ## ⚙️ CI/CD with AWS
 
+#### AWS Services Used:
+
+- IAM - Create roles for EC2 and CodeDeploy
+
+- EC2 - Launch instance, install required packages
+
+- S3 - Stores source & build artifacts
+
+- CodeBuild - Builds app from repo using buildspec.yaml
+
+- CodeDeploy - Deploys to EC2 instance
+
+- CodePipeline - Orchestrates CI/CD process
+
 ### Plan:
 
 - Create a pipeline that:
@@ -226,31 +240,27 @@ mlruns/
 
 - Builds with CodeBuild
 
+- Stores SourceArtifact/ & BuildArtifact/ in S3 internally managed by CodePipeline
+
 - Deploys to EC2 with CodeDeploy
 
-#### AWS Services Used:
+- Glues entire flow using CodePipeline
 
-- IAM - Create roles for EC2 and CodeDeploy
-
-- EC2 - Launch instance, install required packages
-
-- S3 - Stores build artifacts
-
-- CodeBuild - Builds app from repo using buildspec.yaml
-
-- CodeDeploy - Deploys to EC2 instance
-
-- CodePipeline - Orchestrates CI/CD process
 
 #### Before AWS Console Work
 
-- Copy requirements.txt and params.yaml into flaskapp/
+- Add prod_requirements.txt into flakapp/
+
+- Copy-Paste params.yaml from the root directory into flaskapp/
+
+- Add scripts/, buildspec.yaml, appspec.yaml into root directory
 
 - Git add, commit, and push
 
-#### AWS Console Steps:
+### AWS Console Steps:
 
-- IAM Setup
+
+#### IAM Setup
 
 - Create roles for EC2 and CodeDeploy with relevant policies
 
@@ -270,7 +280,7 @@ mlruns/
 
 - Attach IAM role and EC2 instance tag
 
-### CodePipeline
+### CodePipeline:
 
 - Source Stage: GitHub repo as source
 
@@ -289,7 +299,7 @@ mlruns/
 #### Authorize with DagsHub if prompted
 
 - Access app in browser:
--http://<EC2-public-IP>:5000
+- http://<"EC2-public-IP">:5000
 
 #### 📊 Tools & Tech Stack
 
@@ -300,11 +310,6 @@ mlruns/
 - DagsHub, GitHub, AWS S3, EC2, CodeBuild, CodeDeploy, CodePipeline
 
 - Docker (optional), GitHub Actions (optional)
-
-🙌 Acknowledgements
-
-Inspired by industry-level ML workflows and MLOps best practices.
-Thanks to open-source projects like DVC, MLflow, and DagsHub.
 
 
 ---

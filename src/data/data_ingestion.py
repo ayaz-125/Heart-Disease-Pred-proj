@@ -1,5 +1,3 @@
-# This is for the data ingestion and here we are using s3 bucket for loading the data.
-
 import numpy as np
 import pandas as pd
 pd.set_option("future.no_silent_downcasting",True) # it prevents automatic type changes (like float64 to float32) happening in the background without your knowledge.

@@ -7,22 +7,25 @@
     <style>
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(to right, #0a0a0a, #21b50a);
+            background: linear-gradient(to right, #0a0a0a,rgb(136, 9, 9));
             margin: 0;
             padding: 0;
         }
         .container {
             max-width: 700px;
             margin: 50px auto;
-            background: #131f27;
+            background: #7268b4;
             padding: 40px;
             border-radius: 15px;
             box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
         }
         h1 {
             text-align: center;
-            color: #f81ef8;
+            color: #0e0d0e;
             margin-bottom: 30px;
+            font-weight: bold;
+            /* font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif; */
+            font-style: italic;
         }
         label {
             display: block;
@@ -40,8 +43,8 @@
             font-size: 16px;
         }
         button {
-            background-color: #e31717;
-            color: white;
+            background-color: #f60909;
+            color: rgb(0, 0, 0);
             padding: 14px 25px;
             border: none;
             border-radius: 8px;
@@ -95,7 +98,7 @@
         <label>Fasting Blood Sugar > 120 mg/dL? (1 = Yes, 0 = No)</label>
         <input type="text" name="fbs" min="0" max="1" required>
 
-        <label>Resting ECG Results (0–2)</label>
+        <label>Resting EKG Results (0–2)</label>
         <input type="text" name="restecg" min="0" max="2" required>
 
         <label>Max Heart Rate Achieved</label>

@@ -10,9 +10,30 @@ import dagshub
 import os
 from src.logger import logging
 
-# Set MLflow tracking URI and initialize DagsHub
+# Below code block is for production use
+# -------------------------------------------------------------------------------------
+# Set up DagsHub credentials for MLflow tracking
+# dagshub_token = os.getenv("CAPSTONE_TEST")
+# if not dagshub_token:
+#     raise EnvironmentError("CAPSTONE_TEST environment variable is not set")
+
+# os.environ["MLFLOW_TRACKING_USERNAME"] = dagshub_token
+# os.environ["MLFLOW_TRACKING_PASSWORD"] = dagshub_token
+
+# dagshub_url = "https://dagshub.com"
+# repo_owner = "ayazr425"
+# repo_name = "Heart-Disease-Pred-proj"
+# # Set up MLflow tracking URI
+# mlflow.set_tracking_uri(f'{dagshub_url}/{repo_owner}/{repo_name}.mlflow')
+# -------------------------------------------------------------------------------------
+
+
+# Below code block is for local use
+# ----------------------------------------------------------------------------------------------------
 mlflow.set_tracking_uri('https://dagshub.com/ayazr425/Heart-Disease-Pred-proj.mlflow')
 dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Predection-proj', mlflow=True, host="https://dagshub.com")
+# ----------------------------------------------------------------------------------------------------
+
 
 def load_model(file_path: str):
     """Load the trained model from a file."""

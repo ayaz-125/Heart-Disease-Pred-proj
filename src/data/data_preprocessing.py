@@ -1,5 +1,3 @@
-# This is for the data preprocessing; different preprocessing techniques will be used in this file.
-
 import numpy as np
 import pandas as pd
 import os
