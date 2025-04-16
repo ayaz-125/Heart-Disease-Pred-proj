@@ -274,13 +274,13 @@ mlruns/
 
 - SSH into EC2 and run bash install.sh script to install dependencies
 
-### CodeDeploy:
+#### CodeDeploy:
 
 - Create Application & Deployment Group
 
 - Attach IAM role and EC2 instance tag
 
-### CodePipeline:
+#### CodePipeline:
 
 - Source Stage: GitHub repo as source
 
@@ -296,12 +296,12 @@ mlruns/
 - pip3 install -r prod_requirements.txt
 - python3 app.py
 
-#### Authorize with DagsHub if prompted
+## Authorize with DagsHub if prompted
 
 - Access app in browser:
 - http://<"EC2-public-IP">:5000
 
-#### 📊 Tools & Tech Stack
+## 📊 Tools & Tech Stack
 
 - Python, Pandas, Scikit-learn
 
