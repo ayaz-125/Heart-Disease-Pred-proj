@@ -3,6 +3,66 @@
 This is a complete end-to-end MLOps project for heart disease prediction using tools like DVC, MLflow, DagsHub, Flask, and AWS S3,AWS CodePipeline. It demonstrates a production-ready ML pipeline with experiment tracking, model versioning, and cloud integration.
 
 ---
+## 📌 Project Overview
+This project aims to predict the likelihood of heart disease in a patient based on key medical indicators such as age, blood pressure, cholesterol, chest pain type, and more. By analyzing historical patient data and leveraging a machine learning model, the system can provide fast, data-driven health risk assessments—helpful for doctors, healthcare providers, and early screening tools.
+
+
+### 📁 Notebook Workflow
+- exp1.ipynb : Data Exploration and Understanding and Best Model Selection
+
+- exp1.ipynb: Hyperparameter tuning
+
+### 🔍 Key Features Considered
+- Patient's age, resting blood pressure, and cholesterol levels
+
+- Chest pain type and fasting blood sugar status
+
+- Resting electrocardiographic results and maximum heart rate achieved
+
+- Presence of exercise-induced angina and ST depression during stress test
+
+- This approach ensures more reliable and personalized heart disease risk predictions using key clinical indicators.
+
+### 📊 Data Collection & Features
+- Heart disease-related medical data was collected from  Kaggle, with the following key features used:
+
+- age, sex, cp (chest pain type) 
+
+-  Blood pressure, cholesterol, and blood sugar levels
+
+-  EKG results, max heart rate, and exercise-induced angina
+
+-  ST depression, heart scan results, and thalassemia
+
+The target variable indicates whether the patient has heart disease (1) or not (0).
+
+### 🧹 Preprocessing Strategy
+
+- Handled missing values using median/mode imputation where necessary
+
+- Scaled continuous variables (like age, cholesterol, etc.) using StandardScaler to normalize input features
+
+- Split data into training and testing sets using a stratified split, ensuring class balance in both sets
+
+
+### 🎯 Project Goal
+This is a foundational version of a larger vision: turning a basic classification-based ML use case into a production-grade MLOps pipeline.
+
+While high accuracy isn’t the main priority at this stage, the focus is on:
+
+- Clean workflow
+
+- Realistic data handling
+
+- Automation-ready structure
+
+- Scalability for future additions
+
+---
+
+## 🖥️ Demonstration of FlaskApp on Live Server 
+---
+---
 ## 🆕 What's New ?: CodePipeline Over Docker.
 
 ### ❌ Why Not Use Docker?
