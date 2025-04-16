@@ -8,7 +8,7 @@ This is a complete end-to-end MLOps project for heart disease prediction using t
 
 ### Step 1: Initialize Project
 
-```bash
+```Terminal
 git clone https://github.com/<your-username>/<your-repo>.git
 cd <your-repo>
 conda create -n heartpro python=3.10 -y
@@ -17,7 +17,7 @@ conda activate heartpro
 
 ### Step 2: Setup Folder Structure
 
-```bash
+```Terminal
 pip install cookiecutter
 cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
 ```
@@ -26,7 +26,7 @@ cookiecutter -c v1 https://github.com/drivendata/cookiecutter-data-science
 - Rename `data/` folder to `data_fol/`
 - Add `data_fol/` to `.gitignore`
 
-```bash
+```Terminal
 git add .
 git commit -m "Initial setup"
 git push
@@ -44,19 +44,21 @@ git push
 
 ### Step 4: Install MLflow and DagsHub SDK
 
-```bash
-pip install dagshub mlflow ipykernel
+```Terminal
+pip install dagshub 
+pip install mlflow 
+pip insyall ipykernel
 pip install -r requirements.txt
 ```
 
 ### Step 5: Run Experiment Notebook
 
-```bash
+```Terminal
 jupyter notebook
 # Run experiment notebook and track via MLflow
 ```
 
-```bash
+```Terminal
 git add .
 git commit -m "Added experiment logs"
 git push
@@ -68,7 +70,7 @@ git push
 
 ### Step 6: Initialize DVC
 
-```bash
+```Terminal
 dvc init
 mkdir local_s3
 dvc remote add -d mylocal local_s3
@@ -88,7 +90,7 @@ Add the following files to root:
 - `dvc.yaml`
 - `params.yaml`
 
-```bash
+```Terminal
 dvc repro
 dvc status
 git add .
@@ -107,13 +109,13 @@ git push
 
 ### Step 9: Install AWS Tools
 
-```bash
+```Terminal
 pip install "dvc[s3]" awscli
 ```
 
-### Step 10: Configure AWS in Terminal
+### Step 10: ✅ Environment Variable Setup
 
-```powershell
+```Terminal
 $env:AWS_ACCESS_KEY_ID="your_access_key_id"
 $env:AWS_SECRET_ACCESS_KEY="your_secret_access_key"
 $env:BUCKET_NAME="your_bucket_name"
@@ -121,7 +123,7 @@ $env:BUCKET_NAME="your_bucket_name"
 
 ### Step 11: Connect S3 as DVC Remote
 
-```bash
+```Terminal
 dvc remote add -d myremote s3://your_bucket_name
 dvc push
 ```
@@ -132,15 +134,15 @@ dvc push
 
 ### Step 12: Create Flask App Directory
 
-```bash
-mkdir flask_app
-cd flask_app
-# Add Flask app files like app.py, templates/, static/, etc.
+```Terminal
+mkdir flaskapp
+cd flaskapp
+# Add Flask app files like app.py, templates/,pro_requirements.txt,params.yaml, etc.
 ```
 
 ### Step 13: Run Flask App
 
-```bash
+```Terminal
 pip install flask
 python app.py
 ```
@@ -158,19 +160,19 @@ python app.py
 
 ### Step 15: Set Token in Terminal
 
-```powershell
+```Terminal
 $env:CAPSTONE_TEST="your_token_here"
 ```
 
 ---
 
-## ✅ Environment Variable Setup
+<!-- ## ✅ Environment Variable Setup
 
 ```powershell
 $env:AWS_ACCESS_KEY_ID="your_access_key_id"
 $env:AWS_SECRET_ACCESS_KEY="your_secret_access_key"
-$env:BUCKET_NAME="your_bucket_name"
-```
+$env:BUCKET_NAME="your_bucket_name" -->
+
 
 ---
 
@@ -198,12 +200,98 @@ mlruns/
 
 ---
 
-## 📚 Tools & Tech Stack
+
+
+## ⚙️ CI/CD with AWS
+
+### Plan:
+
+- Create a pipeline that:
+
+- Pulls code from GitHub
+
+- Builds with CodeBuild
+
+- Deploys to EC2 with CodeDeploy
+
+#### AWS Services Used:
+
+- IAM - Create roles for EC2 and CodeDeploy
+
+- EC2 - Launch instance, install required packages
+
+- S3 - Stores build artifacts
+
+- CodeBuild - Builds app from repo using buildspec.yaml
+
+- CodeDeploy - Deploys to EC2 instance
+
+- CodePipeline - Orchestrates CI/CD process
+
+#### Before AWS Console Work
+
+- Copy logger.py and params.yaml into flaskapp/
+
+- Git add, commit, and push
+
+#### AWS Console Steps:
+
+- IAM Setup
+
+- Create roles for EC2 and CodeDeploy with relevant policies
+
+#### EC2 Setup:
+
+- Launch Ubuntu 22.04 instance
+
+- Allow HTTP, HTTPS, and port 5000 in security group
+
+- Attach IAM role to EC2
+
+- SSH into EC2 and run bash install.sh script to install dependencies
+
+### CodeDeploy:
+
+- Create Application & Deployment Group
+
+- Attach IAM role and EC2 instance tag
+
+### CodePipeline
+
+- Source Stage: GitHub repo as source
+
+- Build Stage: CodeBuild using buildspec.yaml
+
+- Deploy Stage: CodeDeploy using created app and deployment group
+
+#### 🚤 Deploy and Run
+
+- SSH into EC2
+- Navigate to project folder:
+- cd /home/ubuntu/flaskapp
+- pip3 install -r prod_requirements.txt
+- python3 app.py
+
+#### Authorize with DagsHub if prompted
+
+- Access app in browser:
+-http://<EC2-public-IP>:5000
+
+#### 📊 Tools & Tech Stack
 
 - Python, Pandas, Scikit-learn
+
 - DVC, MLflow, Flask
-- DagsHub, GitHub, AWS S3
+
+- DagsHub, GitHub, AWS S3, EC2, CodeBuild, CodeDeploy, CodePipeline
+
 - Docker (optional), GitHub Actions (optional)
+
+🙌 Acknowledgements
+
+Inspired by industry-level ML workflows and MLOps best practices.
+Thanks to open-source projects like DVC, MLflow, and DagsHub.
+
 
 ---
 
