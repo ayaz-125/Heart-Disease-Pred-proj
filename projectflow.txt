@@ -270,6 +270,32 @@ note2 - params.yaml added coz we using it in our app in modular way and not hard
   - Open in browser
   - Authorize access for 1 day/ week/ month 
 
+  Note - If you will face an error at this point and in the browser the error will look like 
+         - (Your request has probably timed out- try to restart it from your Python client.)
+         Then 
+          - Add this command to set the Dagshub token into the ec2 server -> export CAPSTONE_TEST=your_token_here
+          - Use this command to see the set token -> echo $CAPSTONE_TEST
+          - Now open your command prompt(local system) and use this command -> ssh -i your-key.pem ubuntu@your-ec2-public-ip   ( ex - ssh -i (location of your pem key which you created when u created the ec2 server )ubuntu@( and your ec2 public ip address))
+          - Use this command in your command prompt (local system) to  Create a Python script to test the DagsHub - nano test_dagshub.py
+          - Add the following code to test_dagshub.py 
+                             import dagshub
+                                    try:
+                                        dagshub.init(repo_owner='ayazr425', repo_name='Heart-Disease-Pred-proj', mlflow=True)
+                                        print("DagsHub client initialized successfully")
+                                    except Exception as e:
+                                        print(f"Error initializing DagsHub: {e}")
+          - Press Ctrl + X to close, then Y to confirm and Enter to save.
+          - After that run this command in your command prompt (local system) ->   pip3 install dagshub
+          - Now, run the script  -> python3 test_dagshub.py
+          - If you see the message "DagsHub client initialized successfully" then you are good to
+          - Open the following link in your browser to authorize the client.
+             - Authorize access for 1 day/ week/ month 
+
+          - Run this command in your command prompt (local system)    ->   cd /home/ubuntu/flaskapp
+          - Now you can run the flask application using this command -> python3 app.py
+          
+         
+
 13.Access the Running App
   - From EC2 console:
   - Copy the Public IP
@@ -286,3 +312,7 @@ note2 - params.yaml added coz we using it in our app in modular way and not hard
   - CodePipeline
   - S3
   - EC2
+
+
+
+
