@@ -1,5 +1,6 @@
 # 🫀 Heart Disease Prediction - End-to-End MLOps Project
 
+
 This is a complete end-to-end MLOps project for heart disease prediction using tools like DVC, MLflow, DagsHub, Flask, and AWS S3,AWS CodePipeline. It demonstrates a production-ready ML pipeline with experiment tracking, model versioning, and cloud integration.
 
 ---
@@ -58,10 +59,10 @@ While high accuracy isn’t the main priority at this stage, the focus is on:
 
 - Scalability for future additions
 
----
+## 🖥️ Demonstration of FlaskApp on Live Server
+https://github.com/user-attachments/assets/306d96ed-1536-4fdc-95b5-6a712e97918d
 
-## 🖥️ Demonstration of FlaskApp on Live Server 
----
+
 ---
 ## 🆕 What's New ?: CodePipeline Over Docker.
 
@@ -348,6 +349,8 @@ mlruns/
 
 - Deploy Stage: CodeDeploy using created app and deployment group
 
+### Demonstration of Successfull Pipeline Execution
+https://github.com/user-attachments/assets/1d944679-d9bc-43f9-bf8b-1e28ba7b8a0f
 #### 🚤 Deploy and Run
 
 - SSH into EC2
