@@ -181,8 +181,15 @@ git push
 
 ---
 
-## Pipeline:
-<img width="908" alt="Screenshot 2025-04-18 105216" src="https://github.com/user-attachments/assets/16bc89b1-0519-428a-9d4f-2c2a67467d25" />
+## Pipeline Flow:
+### Part-1
+<img width="905" alt="1p" src="https://github.com/user-attachments/assets/044a0714-ddf3-4942-93e8-f4608cb40d9e" />
+
+
+### Part-2
+<img width="908" alt="2p" src="https://github.com/user-attachments/assets/bb36eb20-884a-42cc-afdc-1f138069b949" />
+
+
 
 
 ## ☁️ AWS S3 Integration for DVC
